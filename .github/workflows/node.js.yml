@@ -14,18 +14,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Checkout Code
+      uses: actions/checkout@v2
+      
+    - name: Build and Push Container Image
+      uses: docker/build-push-action@v1
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        username: ${{ secrets.REGISTRY_USER }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
+        dockerfile: Dockerfile
+        repository: ${{ secrets.REGISTRY_USER }}/${{ github.event.repository.name }}
+        tag_with_ref: true
+        tag_with_sha: true
+   
