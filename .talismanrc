@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: password.txt
+  checksum: cbca9decfb6307c8e2c43b3db9afc96e4aa462bdadf2029f39b1682eb32d6d78
+- filename: server.js
+  checksum: 3bb1a729bb0387d3f0a94bd640038820139a03dea43837c65e125ba46e7734b7
+version: ""
